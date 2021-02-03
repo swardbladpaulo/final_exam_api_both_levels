@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 2021_02_03_143519) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
-    t.bigint "articles_id"
+    t.bigint "article_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["articles_id"], name: "index_comments_on_articles_id"
+    t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,5 +59,5 @@ ActiveRecord::Schema.define(version: 2021_02_03_143519) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "comments", "articles", column: "articles_id"
+  add_foreign_key "comments", "articles"
 end

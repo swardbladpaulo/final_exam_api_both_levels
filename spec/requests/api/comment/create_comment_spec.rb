@@ -3,7 +3,7 @@ describe "successfully create comments" do
   let(:article){create(:article)}
   before do
     post '/api/comments',
-    params: {comments: {body: "This is a comment", article_id: article.id}}
+    params: {comment: {body: "This is a comment", article_id: article.id}}
   end
 
   it 'is expected to return 200 status' do
@@ -14,12 +14,9 @@ describe "successfully create comments" do
     expect(response_json['message']).to eq 'This comment has been posted'
   end
 
-  it 'is expected to belong to article' do
-    expect(response_json['comments']).to eq article_id
+  it 'is expected to belong to article' do 
+    comment = Comment.last
+    expect(comment.article).to eq article
   end
-
-end  
-
-
-
+  end  
 end
