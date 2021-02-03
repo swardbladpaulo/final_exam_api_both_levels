@@ -5,10 +5,10 @@ class Api::CommentsController < ApplicationController
       render json: {message: 'This comment has been posted'},
       status: 200
     else
-      render json: {message: 'Something went wrong'}
+      render json: {message: 'Something went wrong'},
+      status: 400
   end
 end
-
 
   private
   def comment_params 

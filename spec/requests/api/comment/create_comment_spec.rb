@@ -18,5 +18,19 @@ describe "successfully create comments" do
     comment = Comment.last
     expect(comment.article).to eq article
   end
-  end  
+  end
+  
+  describe "unsuccessfully create comments" do
+    before do
+      post '/api/comments',
+      params: {comment: {body: nil, article_id: nil}}
+    end
+
+    it 'is expected to return 400 status' do
+      expect(response).to have_http_status 400
+    end
+    it 'is expected to return error message' do
+      expect(response_json['message']).to eq "Something went wrong"
+    end
+  end
 end
